@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+    <form method="PATCH">
+        <h1> Update Reimbursement</h1>
+        <br>
+        <br>
+        
+        <label for="reimbursementId">Reimbursement Id:</label><br>
+        <input type="text" id="reimbursementId" name="reimbursementId"><br>
+
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
+        
+        <label for="amount">Amount:</label><br>
+        <input type="text" id="amount" name="amount"><br>
+        
+        <label for="dateSubmitted">Date Submitted:</label><br>
+        <input type="text" id="dateSubmitted" name="dateSubmitted"><br>
+        
+        <label for="dateResolved">Date Resolved:</label><br>
+        <input type="text" id="dateResolved" name="dateResolved"><br>
+
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br>
+
+        <label for="resolver">Resolver:</label><br>
+        <input type="text" id="resolver" name="resolver"><br>
+
+        <label for="status">Status:</label><br>
+        <select id="status" name="status">
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Denied">Denied</option>
+          </select>
+          <br>
+          <br>
+          
+        <label for="type">Type:</label><br>
+        <select id="type" name="type">
+            <option value="Lodging">Lodging</option>
+            <option value="Travel">Travel</option>
+            <option value="Food">Food</option>
+            <option value="Other">Other</option>
+          </select>
+          <br>
+          <br>
+          
+
+        <input type="submit" value = "Update User">
+      </form>
+</body>
+</html>
