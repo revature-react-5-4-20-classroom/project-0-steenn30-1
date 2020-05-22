@@ -53,15 +53,11 @@ export async function getReimbursementByUserId(userId : string) : Promise<Reimbu
 }
 
 export async function submitReimbursement(amount : string, type : string, description : string, authorId : any){
-    
     let client : PoolClient;
     client = await connectionPool.connect();
     try{
-        
-        
         var res = await client.query('INSERT INTO reimbursement VALUES (DEFAULT,$1, $2,CURRENT_DATE, NULL, $3,NULL,1,$4);', [authorId, amount, description, type]);
-        
-
+    
         let newRecord = await client.query('SELECT * FROM reimbursement WHERE reimbursementid IN (SELECT MAX(reimbursementid) from reimbursement);');
         const reimbursementReturn = newRecord.rows.map((r)=>{
             return new Reimbursement(r.reimbursementid,r.author,r.amount,r.datesubmitted,r.dateresolved,r.described,r.resolverid,r.statusid,r.reimbursementtype);
