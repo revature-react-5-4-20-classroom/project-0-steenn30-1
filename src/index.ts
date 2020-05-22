@@ -9,6 +9,13 @@ import {getReimbursementsByStatus,getReimbursementByUserId,submitReimbursement, 
 
 
 const app : Application = express();
+
+//Check if webhook works by pushing new enpoint:
+app.get('/new-endpoint', (req:Request,res:Response) => {
+    res.send('Webhooks worked');
+});
+
+
 app.use(bodyparser.json());
 app.use(sessionMiddleware);
 
