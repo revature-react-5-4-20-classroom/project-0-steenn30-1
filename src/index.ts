@@ -137,7 +137,8 @@ app.post('/login', async (req:Request, res:Response) => {
             res.send(user);
         } catch(e){
             
-            res.status(400).send(`Failed to authenticate username and password: ${e}`);
+            //res.status(400).send(`Failed to authenticate username and password: ${e}`);
+            res.status(400).send(`Failed to authenticate username and password: ${app._router.stack}`);
         }
         
     }
