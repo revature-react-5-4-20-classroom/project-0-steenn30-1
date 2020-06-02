@@ -123,10 +123,11 @@ app.patch('/users', async (req:Request, res:Response)=>{
 });
 
 
-app.get('/login/'), async(req:Request, res:Response) =>{
+app.patch('/login/'), async(req:Request, res:Response) =>{
     if(req.session){
         req.session.destroy(()=>{});
     }
+    res.send('Logged out');
     
 }
 
