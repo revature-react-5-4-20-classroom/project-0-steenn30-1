@@ -113,7 +113,7 @@ app.patch('/users', async (req:Request, res:Response)=>{
     let roleId : string = req.body.roleid;
 
     if(req.session){
-        if(req.session.user.roleId == '1'){
+        if(req.session.user.userId == req.body.userid){
             let updatedUser = await updateUser(userId, username, password, firstName, lastName, email, roleId);
             res.status(200).send(updatedUser);
         } else {
