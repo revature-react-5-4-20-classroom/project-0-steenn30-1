@@ -124,14 +124,16 @@ app.patch('/users', async (req:Request, res:Response)=>{
 
 
 app.patch('/login'), async(req:Request, res:Response) =>{
-    try{
-        if(req.session){
-            req.session.destroy(()=>{});
-        }
-        res.send('Logged out');
-    } catch(e){
-        res.send(e);
-    }
+    // try{
+    //     if(req.session){
+    //         req.session.destroy(()=>{});
+    //     }
+    //     res.send('Logged out');
+    // } catch(e){
+    //     res.send(e);
+    // }
+
+    res.send("made it");
     
     
     
