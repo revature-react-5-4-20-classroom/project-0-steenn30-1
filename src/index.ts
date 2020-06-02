@@ -123,7 +123,7 @@ app.patch('/users', async (req:Request, res:Response)=>{
 });
 
 
-app.patch('/login', async(req:Request, res:Response) =>{
+app.patch('/login', async (req:Request, res:Response) =>{
     try{
         if(req.session){
             req.session.destroy(()=>{});
@@ -133,11 +133,9 @@ app.patch('/login', async(req:Request, res:Response) =>{
         res.send(e);
     }
 
-   
     
     
-    
-}
+});
 
 app.post('/login', async (req:Request, res:Response) => {
     let {username, password} = req.body;
