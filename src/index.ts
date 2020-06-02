@@ -122,6 +122,14 @@ app.patch('/users', async (req:Request, res:Response)=>{
     }
 });
 
+
+app.patch('/login'), async(req:Request, res:Response) =>{
+    if(req.session){
+        req.session.destroy(()=>{});
+    }
+    
+}
+
 app.post('/login', async (req:Request, res:Response) => {
     let {username, password} = req.body;
     if(!username || !password){
