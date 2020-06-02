@@ -134,7 +134,7 @@ app.post('/login', async (req:Request, res:Response) => {
             if(req.session){
                 req.session.user = user;
             }
-            res.send(user);
+            res.send(user).redirect('/home');
         } catch(e){
             
             //res.status(400).send(`Failed to authenticate username and password: ${e}`);
