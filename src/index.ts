@@ -123,19 +123,19 @@ app.patch('/users', async (req:Request, res:Response)=>{
 });
 
 
-app.patch('/login', async (req:Request, res:Response) =>{
-    // try{
-    //     if(req.session){
-    //         req.session.destroy(()=>{});
-    //     }
-    //     res.send('Logged out');
-    // } catch(e){
-    //     res.send(e);
-    // }
+// app.patch('/login', async (req:Request, res:Response) =>{
+//     // try{
+//     //     if(req.session){
+//     //         req.session.destroy(()=>{});
+//     //     }
+//     //     res.send('Logged out');
+//     // } catch(e){
+//     //     res.send(e);
+//     // }
 
     
     
-});
+// });
 
 app.post('/login', async (req:Request, res:Response) => {
     let {username, password} = req.body;
