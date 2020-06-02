@@ -177,6 +177,7 @@ app.post('/create', async (req:Request, res:Response) => {
 });
 
 app.listen(3004, ()=>{
+    console.log(`${app._router.stack}`)
     console.log('app has started');
 });
 
