@@ -177,7 +177,11 @@ app.post('/create', async (req:Request, res:Response) => {
 });
 
 app.listen(3004, ()=>{
-    console.log(`${app._router.stack}`)
+    app._router.stack.forEach(function(r:any){
+        if (r.route && r.route.path){
+          console.log(r.route.path)
+        }
+      })
     console.log('app has started');
 });
 
