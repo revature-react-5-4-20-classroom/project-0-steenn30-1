@@ -146,7 +146,7 @@ app.post('/login', async (req:Request, res:Response) => {
 app.patch('/logout', async (req:Request, res:Response) =>{
     try{
         if(req.session){
-            req.session.destroy(()=>{});
+            req.session.destroy((e)=>{console.log(e)});
         }
         res.send('Logged out');
     } catch(e){
