@@ -5,8 +5,9 @@ import {User} from './models/user';
 import {Reimbursement} from './models/reimbursement';
 import { findUserByUsernamePassword, getUsersFM, getUsersById, updateUser,createUser} from './repository/user-data-access';
 import { sessionMiddleware } from './middleware/sessionMiddleware';
-import {getReimbursementsByStatus,getReimbursementByUserId,submitReimbursement, updateReimbursement} from './repository/reimbursement-data-access';
+import {getReimbursementsByStatus,getReimbursementByUserId,submitReimbursement, updateReimbursement, getReimbursementsWithResolver} from './repository/reimbursement-data-access';
 import { corsFilter } from './middleware/corsFilter';
+
 
 
 const app : Application = express();
@@ -50,6 +51,11 @@ app.get('/reimbursements/status/:statusId', async (req : Request, res : Response
     }
     
 });
+
+app.get('/reimbursements/resolver', async (req:Request, res:Response) =>{
+    let settledReimbursements = await getReimbursementsWithResolver();
+    res.send(settledReimbursements);
+})
 
 app.patch('/reimbursements', async (req : Request, res : Response) =>{
 
