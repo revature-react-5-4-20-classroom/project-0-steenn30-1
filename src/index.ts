@@ -53,8 +53,13 @@ app.get('/reimbursements/status/:statusId', async (req : Request, res : Response
 });
 
 app.get('/reimbursements/resolver', async (req:Request, res:Response) =>{
-    let settledReimbursements = await getReimbursementsWithResolver();
-    res.send(settledReimbursements);
+    try{
+        let settledReimbursements = await getReimbursementsWithResolver();
+        res.send(settledReimbursements);
+    } catch(e){
+        res.send(e.message);
+    }
+    
 })
 
 app.patch('/reimbursements', async (req : Request, res : Response) =>{

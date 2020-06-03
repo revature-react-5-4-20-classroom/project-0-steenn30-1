@@ -15,12 +15,12 @@ export async function getReimbursementsWithResolver() : Promise<Reimbursement[]>
         r.reimbursementid, r.author, r.amount, 
         r.datesubmitted, r.dateresolved,
         r.described, 
-        ut.firstname + ' ' +ut.lastname as resolver,
+        CONCAT(ut.firstname , ' ' ,ut.lastname) as resolverid,
         r.statusid,
         r.reimbursementtype 
         FROM reimbursement r 
-        INNER JOIN usertable ut ON usertable.userid = r.resolver 
-        WHERE r.status IN (2,3) ORDER BY datesubmitted`);
+        INNER JOIN usertable ut ON ut.userid = r.resolverid 
+        WHERE (r.statusid =2 or r.statusid=3) ORDER BY datesubmitted`);
         
         
         const reimbursementList = result.rows.map((r)=>{
