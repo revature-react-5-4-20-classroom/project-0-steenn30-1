@@ -5,7 +5,7 @@ import {User} from './models/user';
 import {Reimbursement} from './models/reimbursement';
 import { findUserByUsernamePassword, getUsersFM, getUsersById, updateUser,createUser} from './repository/user-data-access';
 import { sessionMiddleware } from './middleware/sessionMiddleware';
-import {getReimbursementsByStatus,getReimbursementByUserId,submitReimbursement, updateReimbursement, getReimbursementsWithResolver} from './repository/reimbursement-data-access';
+import {getReimbursementsByStatus,getReimbursementByUserId,submitReimbursement, updateReimbursement, getReimbursementsWithResolver, getReimbursementsByStatusAndUser} from './repository/reimbursement-data-access';
 import { corsFilter } from './middleware/corsFilter';
 
 
@@ -39,10 +39,16 @@ app.get('/reimbursements/author/userId/:userId', async(req : Request, res : Resp
 });
 
 
-app.get('/reimbursements/status/:statusId', async (req : Request, res : Response) => {
+app.get('/reimbursements/status/:statusId/:byUser', async (req : Request, res : Response) => {
     let statusId: string = req.params.statusId;
+    let byUser: string = req.params.byUser;
+    let userId : string = req.params.userId;
     if(req.session){
         if(req.session.user.roleId == '3'|| req.session.user.roleId == '2'){
+            if(byUser == "true"){
+                let reimbursementListByStatusAndUser = await getReimbursementsByStatusAndUser(statusId,userId);  
+                res.send(reimbursementListByStatusAndUser);
+            }
             let reimbursementListByStatus = await getReimbursementsByStatus(statusId);  
             res.send(reimbursementListByStatus);
         } else {
