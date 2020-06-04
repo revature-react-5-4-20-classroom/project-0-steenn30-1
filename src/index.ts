@@ -151,7 +151,7 @@ app.post('/login', async (req:Request, res:Response) => {
             if(req.session){
                 req.session.user = user;
             }
-            res.send(user).redirect('http://localhost:3000/home');
+            res.send(user);
         } catch(e){
             
             //res.status(400).send(`Failed to authenticate username and password: ${e}`);
