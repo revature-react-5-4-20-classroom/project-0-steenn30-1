@@ -4,7 +4,26 @@ import { connectionPool } from '.';
 import { PoolClient, QueryResult } from 'pg';
 
 
-
+export async function getReimbursementsByStatusAndUser(statusId:string, userId:string) : Promise<Reimbursement[]>{
+    let client : PoolClient;
+    client = await connectionPool.connect();
+    try{
+       let result : QueryResult;
+        result =  await client.query('SELECT * FROM reimbursement WHERE statusid = $1 AND author=$2 ORDER BY datesubmitted', [statusId, userId]);
+        
+        
+        const reimbursementList = result.rows.map((r)=>{
+            return new Reimbursement(r.reimbursementid, r.author, r.amount, r.datesubmitted, r.dateresolved, r.described, r.resolverid, r.statusid, r.reimbursementtype);
+        });
+        return reimbursementList;
+        
+        
+    } catch(e){
+            throw new Error(`Failed to validate User with DB: ${e.message}`)
+    } finally{
+            client && client.release();
+    }
+}
 export async function getReimbursementsWithResolver() : Promise<Reimbursement[]>{
     let client : PoolClient;
     client = await connectionPool.connect();
