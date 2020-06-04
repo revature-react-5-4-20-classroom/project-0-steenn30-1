@@ -17,7 +17,7 @@ app.get('/new-endpoint', (req:Request,res:Response) => {
     res.send('Webhooks worked');
 });
 
-app.use(bodyparser.urlencoded({ extended: true }));
+//app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(sessionMiddleware);
 app.use(corsFilter);
