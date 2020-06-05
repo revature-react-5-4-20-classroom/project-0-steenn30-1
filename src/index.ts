@@ -41,11 +41,11 @@ app.get('/reimbursements/author/userId/:userId', async(req : Request, res : Resp
 
 app.get('/reimbursements/status/:statusId/user/:byUser', async (req : Request, res : Response) => {
     let statusId: string = req.params.statusId;
-    let byUser: string = req.params.byUser;
+    let byUser: any = req.params.byUser;
     let userId : string = req.params.userId;
     if(req.session){
         if(req.session.user.roleId == '3'|| req.session.user.roleId == '2'){
-            if(byUser === "true"){
+            if(byUser === 1){
                 let reimbursementListByStatusAndUser = await getReimbursementsByStatusAndUser(statusId,userId);  
                 res.send(reimbursementListByStatusAndUser);
             } else{
