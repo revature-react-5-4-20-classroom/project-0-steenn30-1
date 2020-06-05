@@ -38,6 +38,23 @@ app.get('/reimbursements/author/userId/:userId', async(req : Request, res : Resp
         
 });
 
+app.get('/reimbursements/status/:statusId', async (req : Request, res : Response) => {
+    let statusId: string = req.params.statusId;
+    let byUser: any = req.params.byUser;
+    
+    if(req.session){
+        let userId : string = req.session.user.userId;
+        if( req.session.user.roleId == '2'){
+            let reimbursementListByStatus = await getReimbursementsByStatus(statusId);  
+            res.send(reimbursementListByStatus);
+            
+        } else {
+            res.send('Must be finance-manager to view this page');
+        }
+    }
+    
+});
+
 
 app.get('/reimbursements/status/:statusId/user/:byUser', async (req : Request, res : Response) => {
     let statusId: string = req.params.statusId;
