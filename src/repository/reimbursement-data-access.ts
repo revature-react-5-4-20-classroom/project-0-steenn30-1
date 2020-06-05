@@ -9,7 +9,7 @@ export async function getReimbursementsByStatusAndUser(statusId:string, userId:s
     client = await connectionPool.connect();
     try{
        let result : QueryResult;
-        result =  await client.query('SELECT * FROM reimbursement WHERE statusid = $1 AND author=$2 ORDER BY datesubmitted', [statusId, userId]);
+        result =  await client.query('SELECT * FROM reimbursement WHERE (statusid = $1 AND author=$2) ORDER BY datesubmitted', [statusId, userId]);
         
         
         const reimbursementList = result.rows.map((r)=>{
