@@ -48,9 +48,11 @@ app.get('/reimbursements/status/:statusId/user/:byUser', async (req : Request, r
             if(byUser == "true"){
                 let reimbursementListByStatusAndUser = await getReimbursementsByStatusAndUser(statusId,userId);  
                 res.send(reimbursementListByStatusAndUser);
+            } else{
+                let reimbursementListByStatus = await getReimbursementsByStatus(statusId);  
+                res.send(reimbursementListByStatus);
             }
-            let reimbursementListByStatus = await getReimbursementsByStatus(statusId);  
-            res.send(reimbursementListByStatus);
+            
         } else {
             res.send('Must be finance-manager to view this page');
         }
