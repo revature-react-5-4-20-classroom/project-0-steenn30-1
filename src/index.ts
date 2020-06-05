@@ -45,7 +45,7 @@ app.get('/reimbursements/status/:statusId/user/:byUser', async (req : Request, r
     let userId : string = req.params.userId;
     if(req.session){
         if(req.session.user.roleId == '3'|| req.session.user.roleId == '2'){
-            if(byUser === 1){
+            if(byUser == 1){
                 let reimbursementListByStatusAndUser = await getReimbursementsByStatusAndUser(statusId,userId);  
                 res.send(reimbursementListByStatusAndUser);
             } else{
