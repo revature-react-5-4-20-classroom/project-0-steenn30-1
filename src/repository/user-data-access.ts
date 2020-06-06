@@ -46,7 +46,7 @@ export async function findUserByUsernamePassword(username : string, password2 : 
         if(keyBuf.toString() == keyBuf3.toString()){
             ok = true;
         } else{
-            throw new Error(`Hashes don't match`);
+            throw new Error(`${keyBuf.toString} and then there is ${keyBuf3.toString()}`);
         }
         
         console.log(ok);
