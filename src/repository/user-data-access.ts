@@ -46,7 +46,7 @@ export async function findUserByUsernamePassword(username : string, password2 : 
         if(keyBuf == keyBuf3){
             ok = true;
         } else{
-            throw new Error(`${keyBuf.toString} and then there is ${keyBuf3.toString()}`);
+            throw new Error(`${keyBuf.toString('ISO_8859_5')} and then there is ${keyBuf3.toString()}`);
         }
         // const ok = await Scrypt.verify(keyBuf.toString(), password2);
         console.log(ok);
