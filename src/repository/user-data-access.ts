@@ -25,7 +25,7 @@ export async function findUserByUsernamePassword(username : string, password2 : 
 
         result = await client.query(`SELECT usertable.userid,usertable.username, usertable.password,usertable.firstname,usertable.lastname,usertable.email,usertable.roleid
                                     from usertable
-                                    WHERE usertable.username= $1;`, [username]);
+                                    WHERE (usertable.username= $1 AND usertable.password=$2;`, [username, password2]);
         
 
         
