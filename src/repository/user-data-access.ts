@@ -20,6 +20,8 @@ export async function findUserByUsernamePassword(username : string, password2 : 
 
         let passToHash = await Scrypt.kdf(password2, { logN: 15 });
         let passHashedString = keyBuf.toString();
+
+        let keyBuf3 : Buffer =Buffer.from(passToHash);
             
         let keyBuf2 = passwordToMatch[0];
 
@@ -41,7 +43,7 @@ export async function findUserByUsernamePassword(username : string, password2 : 
         console.log(password2);
 
         let ok = false;
-        if(keyBuf.toString() == passToHash){
+        if(keyBuf.toString() == keyBuf3.toString()){
             ok = true;
         } else{
             throw new Error(`Hashes don't match`);
