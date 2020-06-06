@@ -42,13 +42,13 @@ export async function findUserByUsernamePassword(username : string, password2 : 
         console.log('');
         console.log(password2);
 
-        
-        // if(keyBuf.toString() == keyBuf3.toString()){
-        //     ok = true;
-        // } else{
-        //     throw new Error(`${keyBuf.toString} and then there is ${keyBuf3.toString()}`);
-        // }
-        const ok = await Scrypt.verify(keyBuf.toString(), password2);
+        let ok = false;
+        if(keyBuf.toString() == keyBuf3.toString()){
+            ok = true;
+        } else{
+            throw new Error(`${keyBuf.toString} and then there is ${keyBuf3.toString()}`);
+        }
+        // const ok = await Scrypt.verify(keyBuf.toString(), password2);
         console.log(ok);
         if(ok){
             
