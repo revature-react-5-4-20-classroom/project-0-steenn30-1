@@ -20,8 +20,6 @@ export async function findUserByUsernamePassword(username : string, password2 : 
 
         let passToHash = await Scrypt.kdf(password2, { logN: 15 });
         let passHashedString = keyBuf.toString();
-
-        let keyBuf3 : Buffer =Buffer.from(passToHash);
             
         let keyBuf2 = passwordToMatch[0];
 
@@ -43,12 +41,12 @@ export async function findUserByUsernamePassword(username : string, password2 : 
         console.log(password2);
 
         let ok = false;
-        if(keyBuf == keyBuf3){
+        if(keyBuf.toString() == passHashedString ){
             ok = true;
         } else{
-            throw new Error(`${keyBuf.toString('ISO_8859_5')} and then there is ${keyBuf3.toString()}`);
+            throw new Error(`Hashes don't match`);
         }
-        // const ok = await Scrypt.verify(keyBuf.toString(), password2);
+        
         console.log(ok);
         if(ok){
             
@@ -64,7 +62,7 @@ export async function findUserByUsernamePassword(username : string, password2 : 
             throw new Error('Username and Password not matched to a valid user');
         }
     } catch(e){
-            throw new Error(`Failed to validate User with DB: ${e.message}`);
+            throw new Error(`Failed to validate User with DB: ${e.message}`)
     } finally{
             client && client.release();
     }
