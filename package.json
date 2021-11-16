@@ -22,7 +22,7 @@
     "@types/express": "^4.17.6",
     "@types/express-session": "^1.17.0",
     "@types/pg": "^7.14.3",
-    "aws-sdk": "^2.674.0",
+    "aws-sdk": "^2.814.0",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
